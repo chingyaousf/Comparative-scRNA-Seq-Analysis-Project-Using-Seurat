@@ -106,11 +106,17 @@ This project involves scRNA-seq data analysis of individual, merged, and integra
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/VizDimLoadings_merged_integrated_pca.jpg?raw=true){width="519"}
 
-![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/SingleR_merged_integrated_annotation_cluster_umap_legend_label.jpg?raw=true){width="499"}
+![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/OO18_sample_SingleR_annotation_legend_label_02.jpeg?raw=true){width="581"}
 
-![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_SingleR_annotation_legend_label_02_and_Cell_Type_Annotation_Across_Clusters.jpg?raw=true){width="496"}
+![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/OO20_sample_SingleR_annotation_legend_label_02.jpeg?raw=true){width="586"}
 
-![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integration_SingleR_annotation_legend_label_02_and_Cell_Type_Annotation_Across_Clusters.jpg?raw=true){width="496"}
+![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/OO33_sample_SingleR_annotation_legend_label_02.jpeg?raw=true){width="585"}
+
+![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/SingleR_merged_integrated_annotation_cluster_umap_legend_label.jpg?raw=true){width="585"}
+
+![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_SingleR_annotation_legend_label_02_and_Cell_Type_Annotation_Across_Clusters.jpg?raw=true){width="576"}
+
+![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integration_SingleR_annotation_legend_label_02_and_Cell_Type_Annotation_Across_Clusters.jpg?raw=true){width="587"}
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/heatmap_merged_cells_and_features_top_10_markers_for_each_cluster.jpeg?raw=true)
 
