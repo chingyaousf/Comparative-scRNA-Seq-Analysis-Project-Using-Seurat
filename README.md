@@ -2,7 +2,29 @@
 
 ### **Overview**
 
-This project involves scRNA-seq data analysis of individual, merged, and integrated samples using the Seurat package. The objective is to compare cell type distributions and gene expression profiles across different processing methods to evaluate the impact of merging versus integrating datasets. This approach helps understand the influence of batch effects and the effectiveness of integration techniques in scRNA-seq analyses.
+Single-cell RNA sequencing (scRNA-seq) has revolutionized our understanding of the complexities and dynamics of cellular processes at an unprecedented resolution. This project involves scRNA-seq data analysis of individual, **merged**, and **integrated** samples using the Seurat package. The objective is to compare cell type distributions and gene expression profiles across different processing methods to evaluate the impact of **merging versus integrating** datasets. This approach helps understand the influence of batch effects and the effectiveness of integration techniques in scRNA-seq analyses.
+
+#### **Objectives**
+
+-   **Comparative Analysis:** To systematically compare the outcomes of merged versus integrated scRNA-seq data analysis strategies. This comparison is crucial in assessing how different approaches influence the interpretation of cellular heterogeneity and the detection of distinct biological states.
+
+-   **Batch Effect Evaluation:** To evaluate the effectiveness of data integration methods offered by Seurat in mitigating batch effects, which are known to skew analysis results and obscure genuine biological variations.
+
+-   **Optimization of scRNA-Seq Workflows:** To refine analytical workflows in scRNA-seq studies, ensuring that the data processing techniques enhance the biological interpretability of the data without introducing artifacts.
+
+#### **Methodological Approach**
+
+-   **Data Processing:** Utilize Seurat, a widely acclaimed R package designed for QC, analysis, and exploration of scRNA-seq data. The project involves:
+
+    -   **Data Cleaning and Normalization:** Standardizing data to remove technical noise.
+
+    -   **Data Merging Process:** Combining datasets from individual samples into a single dataset. This process involves aligning data from different samples or conditions without the explicit modeling of batch effects, **which can be beneficial for increasing statistical power** but **may retain batch-related variations**.
+
+    -   **Data Integration:** **Harmonizing datasets** from multiple batches or experiments using advanced algorithms to **minimize batch effects** and improve comparability. This is crucial for analyses where batch effects can obscure biological insights.
+
+    -   **Clustering and Differential Expression Analysis:** Identifying and characterizing cell clusters based on their gene expression profiles to detect differentially expressed genes across conditions.
+
+-   **Statistical Analysis:** Employ advanced statistical techniques to discern meaningful patterns and relationships in the data, facilitating a robust understanding of the underlying biological processes.
 
 ### **Datasets**
 
@@ -58,9 +80,9 @@ This project involves scRNA-seq data analysis of individual, merged, and integra
 
 #### **6. Annotation and Cell Type Identification:**
 
--   **Automated Cell Type Annotation:** Leverage SingleR with reference datasets such as the Human Primary Cell Atlas for automated cell type identification.
+-   **Automated Cell Type Annotation:** Leverage **SingleR** with reference datasets such as the Human Primary Cell Atlas for automated cell type identification.
 
--   **Manual Annotation:** Enhance automated annotations by manually refining cell type labels based on known markers and expression profiles specific to identified clusters.
+-   **Manual Annotation:** Enhance automated annotations by manually refining cell type labels based on **canonical markers** and expression profiles specific to identified clusters.
 
 #### **7. Data Visualization and Output:**
 
@@ -92,11 +114,17 @@ This project involves scRNA-seq data analysis of individual, merged, and integra
 
 ### **Figures by each step workflow**
 
+#### Visualize QC metrics
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_samples%20_feature-feature_scatter_plot_QC_metrics_violin_plot.jpg?raw=true){width="434"}
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integrated_samples%20_feature-feature_scatter_plot_QC_metrics_violin_plot.jpg?raw=true){width="467"}
 
+#### Identify the 10 most highly variable genes
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_integrated_plot_merged_variable_feature_2000.jpg?raw=true)
+
+#### Visualize PCA
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/heatmap_merged_pca_1_to_6.png?raw=true){width="572"}
 
@@ -106,6 +134,8 @@ This project involves scRNA-seq data analysis of individual, merged, and integra
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/VizDimLoadings_merged_integrated_pca.jpg?raw=true){width="519"}
 
+#### SingleR annotation
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/OO18_sample_SingleR_annotation_legend_label_02.jpeg?raw=true){width="581"}
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/OO20_sample_SingleR_annotation_legend_label_02.jpeg?raw=true){width="586"}
@@ -114,29 +144,51 @@ This project involves scRNA-seq data analysis of individual, merged, and integra
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/SingleR_merged_integrated_annotation_cluster_umap_legend_label.jpg?raw=true){width="585"}
 
-![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_SingleR_annotation_legend_label_02_and_Cell_Type_Annotation_Across_Clusters.jpg?raw=true){width="576"}
+#### SingleR annotation & Cell Type Annotation Across Clusters
+
+![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_SingleR_annotation_legend_label_02_and_Cell_Type_Annotation_Across_Clusters.jpg?raw=true){width="592"}
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integration_SingleR_annotation_legend_label_02_and_Cell_Type_Annotation_Across_Clusters.jpg?raw=true){width="587"}
+
+#### Expression heatmap for given cells and top 10 features each cluster
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/heatmap_merged_cells_and_features_top_10_markers_for_each_cluster.jpeg?raw=true)
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integrated_samples_top10_genes_heatmap.jpeg?raw=true)
 
+#### Visualizing marker expression merged_samples
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_samples_violin_visualizing_marker_expression_each_cluster.jpeg?raw=true)
+
+#### Visualizing marker row counts merged_samples
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_sample_violin_visualizing_marker_expression_raw_counts_each_cluster.jpeg?raw=true)
 
+#### Visualizing marker expression integrated_samples
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integrated_samples_violin_visualizing_marker_expression_each_cluster.jpeg?raw=true)
+
+#### Visualizing marker row counts integrated_samples
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integrated_sample_violin_visualizing_marker_expression_raw_counts_each_cluster.jpeg?raw=true)
 
+#### Visualizing feature expression on a umap merged_samples
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/FeaturePlot_merged_top_markers_per_cluster.jpeg?raw=true)
+
+#### Visualizing feature expression on a umap integrated_samples
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/FeaturePlot_integrated_top_markers_per_cluster.jpeg?raw=true)
 
+#### merged sample canonical markers annotation and DotPlot
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_sample_canonical_markers_annotation_and_DotPlot.jpg?raw=true){width="583"}
 
+#### integration sample canonical markers annotation & DotPlot
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integration_sample_canonical_markers_annotation_and_DotPlot.jpg?raw=true){width="587"}
+
+manual annotation by canonical markers
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_integrated_annotation_cluster_umap_legend_label.jpg?raw=true)
 
