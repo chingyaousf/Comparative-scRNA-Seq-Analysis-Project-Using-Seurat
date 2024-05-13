@@ -209,3 +209,5 @@ The use of PBMCs in this project allows for the exploration of cell-specific res
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_integrated_annotation_cluster_umap_legend_label.jpg?raw=true)
 
 ## Blog:
+
+<https://ssidmarine.wordpress.com/2024/05/13/comparative-scrna-seq-analysis-project-using-seurat/>
