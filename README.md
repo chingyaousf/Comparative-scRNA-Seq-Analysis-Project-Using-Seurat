@@ -28,17 +28,29 @@ Single-cell RNA sequencing (scRNA-seq) has revolutionized our understanding of t
 
 ### **Datasets**
 
--   **Individual Samples:**
+#### **Individual Samples:**
 
-    -   **OO18_sample:** Sample from dataset OO18.
+-   **OO18_sample:** Peripheral blood mononuclear cells (PBMC) from dataset OO18.
 
-    -   **OO20_sample:** Sample from dataset OO20.
+-   **OO20_sample:** Peripheral blood mononuclear cells (PBMC) from dataset OO20.
 
-    -   **OO33_sample:** Sample from dataset OO33.
+-   **OO33_sample:** Peripheral blood mononuclear cells (PBMC) from dataset OO33.
 
--   **Merged Sample:** Combines OO18, OO20, and OO33 using Seurat's merge function.
+Each of these samples represents a unique collection of PBMCs, possibly under different conditions or from different individuals, providing a diverse basis for analyzing cellular responses and interactions.
 
--   **Integrated Sample:** Integrates OO18, OO20, and OO33 using Seurat's data integration and batch correction methods.
+#### **Merged Sample:**
+
+-   **Merged PBMC Sample:** Combines OO18, OO20, and OO33 using Seurat's merge function. This merged dataset aggregates the individual datasets without adjusting for potential batch effects, offering a broader view of the combined cellular landscape across all samples.
+
+#### **Integrated Sample:**
+
+-   **Integrated PBMC Sample:** Integrates OO18, OO20, and OO33 using Seurat's data integration and batch correction methods. This approach is designed to minimize batch effects while preserving the genuine biological signals across the datasets, allowing for a more accurate comparison and analysis of cellular dynamics and gene expression patterns within PBMCs.
+
+#### **Importance of PBMCs in Research:**
+
+Peripheral blood mononuclear cells (PBMCs) are a critical component in immunological research due to their role in the immune system and their accessibility as a sample type. PBMCs include lymphocytes (T cells, B cells, and NK cells), monocytes, and dendritic cells. Studies involving PBMCs are fundamental for understanding immune responses under various health and disease conditions, making them invaluable for research in immunology, vaccine development, and therapeutic testing.
+
+The use of PBMCs in this project allows for the exploration of cell-specific responses and interactions, providing insights that are vital for advancements in medical research and clinical applications. The comparative analysis of merged versus integrated datasets further enhances our understanding of how data processing techniques can influence the interpretation of such complex biological data.
 
 ### **Analysis Workflow**
 
