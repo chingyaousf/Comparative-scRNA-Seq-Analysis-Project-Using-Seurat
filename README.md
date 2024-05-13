@@ -152,7 +152,11 @@ Single-cell RNA sequencing (scRNA-seq) has revolutionized our understanding of t
 
 #### Expression heatmap for given cells and top 10 features each cluster
 
+**merged_samples**
+
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/heatmap_merged_cells_and_features_top_10_markers_for_each_cluster.jpeg?raw=true)
+
+**integrated_samples**
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integrated_samples_top10_genes_heatmap.jpeg?raw=true)
 
@@ -188,7 +192,7 @@ Single-cell RNA sequencing (scRNA-seq) has revolutionized our understanding of t
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/integration_sample_canonical_markers_annotation_and_DotPlot.jpg?raw=true){width="587"}
 
-manual annotation by canonical markers
+#### manual annotation by canonical markers
 
 ![](https://github.com/chingyaousf/Comparative-scRNA-Seq-Analysis-Project-Using-Seurat/blob/main/plots/merged_integrated_annotation_cluster_umap_legend_label.jpg?raw=true)
 
