@@ -178,11 +178,9 @@ DoHeatmap(seurat_object, features = top10$gene) + NoLegend() + theme(axis.text.y
 DoHeatmap(seurat_object, features = top10$gene) + theme(axis.text.y = element_text(size = 4))  # Adjust the size as needed
 
 
-
-
 ## annotation cluster
 # Number of top markers to select per cluster
-n_top_markers <- 10
+n_top_markers <- 50
 
 # Arrange by p-value and avg_log2FC, then select the top markers for each cluster
 top_markers_per_cluster <- seurat_object.markers %>%
@@ -198,16 +196,16 @@ print(top_markers_per_cluster)
 # If you also want to view the top 20 rows regardless of cluster, just to get a broader overview
 print(top_markers_per_cluster, n = 180)
 
-# Identify the top 10 markers per cluster, just gene names
+# Identify the top 50 markers per cluster, just gene names
 top10_genes_per_cluster <- top_markers_per_cluster %>%
   filter(avg_log2FC > 1) %>%
   arrange(cluster, p_val, desc(avg_log2FC)) %>%
   group_by(cluster) %>%
-  slice_head(n = 10) %>%
+  slice_head(n = 50) %>%
   summarise(genes = list(gene)) %>%
   ungroup()
 
-# Using a loop to print each cluster's top 10 genes with correct cluster numbering starting from 0
+# Using a loop to print each cluster's top 50 genes with correct cluster numbering starting from 0
 for(i in 1:nrow(top10_genes_per_cluster)) {
   cat("Cluster", as.numeric(top10_genes_per_cluster$cluster[i]) - 1, ":")
   cat(paste(top10_genes_per_cluster$genes[[i]], collapse = ", "), "\n\n")
@@ -291,6 +289,7 @@ print(plot)
 
 # integrated_samples_SingleR_Cell_Type_Annotation_Across_Clusters
 head(seurat_object@meta.data)
+meta_data <- seurat_object@meta.data
 
 # Ensure 'meta_data' is a dataframe and the columns 
 print(colnames(meta_data))

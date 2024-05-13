@@ -209,7 +209,7 @@ DoHeatmap(seurat_object, features = top10$gene) + NoLegend() + theme(axis.text.y
 
 # annotation cluster
 # Number of top markers to select per cluster
-n_top_markers <- 20
+n_top_markers <- 50
 
 # Arrange by p-value and avg_log2FC, then select the top markers for each cluster
 top_markers_per_cluster <- seurat_object.markers %>%
@@ -225,16 +225,16 @@ print(top_markers_per_cluster)
 # view the top 20 rows regardless of cluster, just to get a broader overview
 print(top_markers_per_cluster, n = 220)
 
-# Identify the top 20 markers per cluster, just gene names
+# Identify the top 50 markers per cluster, just gene names
 top10_genes_per_cluster <- top_markers_per_cluster %>%
   filter(avg_log2FC > 1) %>%
   arrange(cluster, p_val, desc(avg_log2FC)) %>%
   group_by(cluster) %>%
-  slice_head(n = 20) %>%
+  slice_head(n = 50) %>%
   summarise(genes = list(gene)) %>%
   ungroup()
 
-# Using a loop to print each cluster's top 20 genes with correct cluster numbering starting from 0
+# Using a loop to print each cluster's top 50 genes with correct cluster numbering starting from 0
 for(i in 1:nrow(top10_genes_per_cluster)) {
   cat("Cluster", as.numeric(top10_genes_per_cluster$cluster[i]) - 1, ":")
   cat(paste(top10_genes_per_cluster$genes[[i]], collapse = ", "), "\n\n")
@@ -315,58 +315,41 @@ plot <- DimPlot(seurat_object, label = TRUE, repel = TRUE, label.size = 3)
 # Print the plot
 print(plot)
 
+## manual annotation
+# Set 'seurat_clusters' as the active identity
+seurat_object <- SetIdent(seurat_object, value = "seurat_clusters")
 
+# Define new cluster IDs and apply them
+new.cluster.ids <- c("Naive CD4 T", "CD4+ Mono", "T", "Naive CD4 T", "Naive CD4 T", "NK_1 subset", "B", "NK, T ", "CD8 T", "Monocyte",
+                     "Platelet")
 
+names(new.cluster.ids) <- levels(seurat_object)
+seurat_object <- RenameIdents(seurat_object, new.cluster.ids)
 
+# Convert annotations to a factor and add them to Seurat object
+annotations$predicted.labels <- factor(annotations$labels)
+seurat_object[["new_annotations"]] <- annotations$predicted.labels[match(colnames(seurat_object), rownames(annotations))]
 
-# Define your canonical markers and associated cell types 
-canonical_markers <- list(
-  "Naive CD4 T" = c("IL7R", "CCR7"),
-  "CD14+ Mono" = c("CD14", "LYZ"),
-  "Memory CD4 T" = c("IL7R", "S100A4"),
-  "B" = c("MS4A1"),  # Also known as CD20
-  "CD8 T" = c("CD8A"),
-  "FCGR3A+ Mono" = c("FCGR3A", "MS4A7"),
-  "NK" = c("GNLY", "NKG7"),
-  "DC" = c("FCER1A", "CST3"),
-  "Platelet" = c("PPBP"),
-  "Treg" = c("FOXP3"),
-  "Th17" = c("RORC"),
-  "M1 Macrophages" = c("CD80", "CD86"),
-  "M2 Macrophages" = c("CD163", "CD206"),
-  "Exhausted T Cells" = c("PDCD1", "LAG3", "HAVCR2")
-)
+# Check the newly added annotations
+head(seurat_object[["new_annotations"]])
 
+# Check the updated metadata
+head(seurat_object@meta.data, 5)
 
-# Create a new column in top_markers_per_cluster for cell type annotations
-top_markers_per_cluster$cell_type <- NA
-
-# Loop through each canonical marker set and assign cell types
-for (cell_type in names(canonical_markers)) {
-  markers <- canonical_markers[[cell_type]]
-  top_markers_per_cluster$cell_type[top_markers_per_cluster$gene %in% markers] <- cell_type
-}
-
-# Review the updated markers data frame
-print(top_markers_per_cluster, n = 55)
-
-# Optionally, update the cluster identifiers in the Seurat object
-new_cluster_ids <- top_markers_per_cluster %>%
-  filter(!is.na(cell_type)) %>%
-  distinct(cluster, .keep_all = TRUE) %>%
-  deframe() %>%
-  as.character()
-
-# Rename cluster identifiers in the Seurat object
-names(new_cluster_ids) <- levels(seurat_object)
-seurat_object <- RenameIdents(seurat_object, new_cluster_ids)
-
-# Update the cluster identifiers in the Seurat object using the new cell type annotations
-names(new_cluster_ids) <- top_markers_per_cluster$cluster
-seurat_object <- RenameIdents(seurat_object, new_cluster_ids)
-
-# Plot the UMAP with new cluster names
+# Visualize the distribution of predicted cell types with labels
 DimPlot(seurat_object, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
+
+library(ggplot2)
+plot <- DimPlot(seurat_object, reduction = "umap", label = TRUE, label.size = 4.5) + xlab("UMAP 1") + ylab("UMAP 2") +
+  theme(plot.margin = unit(c(0, 0, 0, 0), "cm"), axis.title = element_text(size = 18), legend.text = element_text(size = 10)) + guides(colour = guide_legend(override.aes = list(size = 5))) +
+  xlim(c(-15, 15)) + ylim(c(-25, 15))
+ggsave(filename = "C:/Users/Administrator/Desktop/seurat analysis/OO18_sample/OO18_manual_annotation_legend_label.jpg", height = 7, width = 12, plot = plot, quality = 50)
+
+# Save the Seurat object
+saveRDS(seurat_object, file = "C:/Users/Administrator/Desktop/seurat analysis/OO18_sample/seurat_object_OO18_sample_04_with_filter_percent.mt.rds")
+
+# Load the saved Seurat object
+seurat_object <- readRDS(file = "C:/Users/Administrator/Desktop/seurat analysis/OO18_sample/seurat_object_OO18_sample_04_with_filter_percent.mt.rds")
 
 
 

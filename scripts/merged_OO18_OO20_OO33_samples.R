@@ -118,7 +118,6 @@ DimHeatmap(seurat_object, dims = 1, cells = 500, balanced = TRUE)
 png("C:/Users/Administrator/Desktop/seurat analysis/merged_OO18_OO20_OO33_samples/heatmap_merged_pca_1_to_6.png", width = 1600, height = 1600, res=150)
 DimHeatmap(seurat_object, dims = 1:6, cells = 500, balanced = TRUE)
 
-
 dev.off() 
 
 # Determine the ‘dimensionality’ of the dataset
@@ -189,7 +188,7 @@ VlnPlot(seurat_object, features = c("CD14", "NOG", "CCR6", "LEF1", "GZMA", "ARHG
 # plot raw counts as well
 VlnPlot(seurat_object, features = c("CD14", "NOG", "CCR6", "LEF1", "GZMA", "ARHGAP15","NKG7", "LTB", "MS4A1","TMEM40"), layer = "counts", log = TRUE)
 
-## visualizes feature expression on a umap 
+## visualizing feature expression on a umap 
 FeaturePlot(seurat_object, features = c("CD14", "NOG", "CCR6", "LEF1", "GZMA", "ARHGAP15","NKG7", "LTB", "MS4A1","TMEM40"))
 
 # expression heatmap for given cells and features
@@ -221,7 +220,7 @@ print(top_markers_per_cluster)
 # If you also want to view the top 20 rows regardless of cluster, just to get a broader overview
 print(top_markers_per_cluster, n = 200)
 
-# Identify the top 20 markers per cluster, just gene names
+# Identify the top 50 markers per cluster, just gene names
 top10_genes_per_cluster <- top_markers_per_cluster %>%
   filter(avg_log2FC > 1) %>%
   arrange(cluster, p_val, desc(avg_log2FC)) %>%
@@ -230,7 +229,7 @@ top10_genes_per_cluster <- top_markers_per_cluster %>%
   summarise(genes = list(gene)) %>%
   ungroup()
 
-# Using a loop to print each cluster's top 10 genes with correct cluster numbering starting from 0
+# Using a loop to print each cluster's top 50 genes with correct cluster numbering starting from 0
 for(i in 1:nrow(top10_genes_per_cluster)) {
   cat("Cluster", as.numeric(top10_genes_per_cluster$cluster[i]) - 1, ":")
   cat(paste(top10_genes_per_cluster$genes[[i]], collapse = ", "), "\n\n")
@@ -319,6 +318,7 @@ print(plot)
 
 # integrated_samples_SingleR_Cell_Type_Annotation_Across_Clusters
 head(seurat_object@meta.data)
+meta_data <- seurat_object@meta.data
 
 # Ensure 'meta_data' is a dataframe and the columns 
 print(colnames(meta_data))
@@ -377,7 +377,6 @@ plot <- DimPlot(seurat_object, reduction = "umap", label = TRUE, label.size = 4.
   theme(plot.margin = unit(c(0, 0, 0, 0), "cm"), axis.title = element_text(size = 18), legend.text = element_text(size = 15)) + guides(colour = guide_legend(override.aes = list(size = 5))) +
   xlim(c(-10, 15)) + ylim(c(-25, 15))
 ggsave(filename = "C:/Users/Administrator/Desktop/seurat analysis/merged_OO18_OO20_OO33_samples/merged_manual_annotation_legend_label.jpg", height = 7, width = 12, plot = plot, quality = 50)
-
 
 
 # DotPlot for genes expression in each cluster

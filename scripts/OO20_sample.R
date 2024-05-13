@@ -227,7 +227,7 @@ print(top_markers_per_cluster)
 # view the top 20 rows regardless of cluster, just to get a broader overview
 print(top_markers_per_cluster, n = 70)
 
-# Identify the top 20 markers per cluster, just gene names
+# Identify the top 50 markers per cluster, just gene names
 top10_genes_per_cluster <- top_markers_per_cluster %>%
   filter(avg_log2FC > 1) %>%
   arrange(cluster, p_val, desc(avg_log2FC)) %>%
@@ -236,7 +236,7 @@ top10_genes_per_cluster <- top_markers_per_cluster %>%
   summarise(genes = list(gene)) %>%
   ungroup()
 
-# Using a loop to print each cluster's top 20 genes with correct cluster numbering starting from 0
+# Using a loop to print each cluster's top 50 genes with correct cluster numbering starting from 0
 for(i in 1:nrow(top10_genes_per_cluster)) {
   cat("Cluster", as.numeric(top10_genes_per_cluster$cluster[i]) - 1, ":")
   cat(paste(top10_genes_per_cluster$genes[[i]], collapse = ", "), "\n\n")
@@ -341,6 +341,11 @@ plot <- DimPlot(seurat_object, reduction = "umap", label = TRUE, label.size = 4.
   xlim(c(-10, 15)) + ylim(c(-25, 15))
 ggsave(filename = "C:/Users/Administrator/Desktop/seurat analysis/OO20_sample/OO20_manual_annotation_legend_label.jpg", height = 7, width = 12, plot = plot, quality = 50)
 
+# Save the Seurat object
+saveRDS(seurat_object, file = "C:/Users/Administrator/Desktop/seurat analysis/OO20_sample/seurat_object_OO20_sample_04_with_filter_percent.mt.rds")
+
+# Load the saved Seurat object
+seurat_object <- readRDS(file = "C:/Users/Administrator/Desktop/seurat analysis/OO20_sample/seurat_object_OO20_sample_04_with_filter_percent.mt.rds")
 
 
 
