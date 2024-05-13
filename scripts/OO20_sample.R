@@ -317,7 +317,7 @@ print(plot)
 seurat_object <- SetIdent(seurat_object, value = "seurat_clusters")
 
 # Define new cluster IDs and apply them
-new.cluster.ids <- c("Naive CD4 T", "CD4 T", "NK_1 subset", "Monocytes,macrophages", "NK_1 subset", "B", "Monocyte, Granulocyte")
+new.cluster.ids <- c("Naive CD4 T", "CD4 T", "NK_1 subset", "CD14+ Mono", "NK_1 subset", "B", "Monocyte, Granulocyte")
 
 names(new.cluster.ids) <- levels(seurat_object)
 seurat_object <- RenameIdents(seurat_object, new.cluster.ids)
@@ -342,24 +342,6 @@ plot <- DimPlot(seurat_object, reduction = "umap", label = TRUE, label.size = 4.
 ggsave(filename = "C:/Users/Administrator/Desktop/seurat analysis/OO20_sample/OO20_manual_annotation_legend_label.jpg", height = 7, width = 12, plot = plot, quality = 50)
 
 
-
-# Define your canonical markers and associated cell types 
-canonical_markers <- list(
-  "Naive CD4 T" = c("IL7R", "CCR7"),
-  "CD14+ Mono" = c("CD14", "LYZ"),
-  "Memory CD4 T" = c("IL7R", "S100A4"),
-  "B" = c("MS4A1"),  # Also known as CD20
-  "CD8 T" = c("CD8A"),
-  "FCGR3A+ Mono" = c("FCGR3A", "MS4A7"),
-  "NK" = c("GNLY", "NKG7"),
-  "DC" = c("FCER1A", "CST3"),
-  "Platelet" = c("PPBP"),
-  "Treg" = c("FOXP3"),
-  "Th17" = c("RORC"),
-  "M1 Macrophages" = c("CD80", "CD86"),
-  "M2 Macrophages" = c("CD163", "CD206"),
-  "Exhausted T Cells" = c("PDCD1", "LAG3", "HAVCR2")
-)
 
 
 

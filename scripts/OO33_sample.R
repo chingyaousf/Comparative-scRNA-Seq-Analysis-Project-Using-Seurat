@@ -354,22 +354,6 @@ plot <- DimPlot(seurat_object, reduction = "umap", label = TRUE, label.size = 4.
 ggsave(filename = "C:/Users/Administrator/Desktop/seurat analysis/OO33_sample/OO33_manual_annotation_legend_label.jpg", height = 7, width = 12, plot = plot, quality = 50)
 
 
-# Define your canonical markers and associated cell types 
-canonical_markers <- list(
-  "Naive CD4 T" = c("IL7R", "CCR7"),
-  "CD14+ Mono" = c("CD14", "LYZ"),
-  "Memory CD4 T" = c("IL7R", "S100A4"),
-  "B" = c("MS4A1"),  # Also known as CD20
-  "CD8 T" = c("CD8A"),
-  "FCGR3A+ Mono" = c("FCGR3A", "MS4A7"),
-  "NK" = c("GNLY", "NKG7"),
-  "DC" = c("FCER1A", "CST3"),
-  "Platelet" = c("PPBP"),
-  "Treg" = c("FOXP3"),
-  "Th17" = c("RORC"),
-  "M1 Macrophages" = c("CD80", "CD86"),
-  "M2 Macrophages" = c("CD163", "CD206"),
-  "Exhausted T Cells" = c("PDCD1", "LAG3", "HAVCR2")
-)
+
 
 
